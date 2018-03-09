@@ -1,0 +1,525 @@
+@import 'reset';
+@import 'mixin';
+@import 'datepicker';
+@import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('fonts/fontawesome-webfont.eot'),
+    url('fonts/fontawesome-webfont.woff') format('woff'),
+    url('fonts/fontawesome-webfont.ttf') format('truetype');
+}
+$ipt-bg: rgba(#3f86a7,.5);
+body {
+    background-color: #232c39;
+    background-image: linear-gradient(45deg, rgba(0, 216, 255, .5) 10%, rgba(0, 1, 127, .7));
+}
+.app-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    position: relative;
+    font-family: -apple-system,'Noto Sans TC',sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    @include collapse-border;
+}
+.app-nav {
+    flex: 0 0 56px;
+    width: 56px;
+    height: 100vh;
+    background: rgba(#000,.8);
+}
+.app-content {
+    flex: 1 1 calc(100% - 56px);
+}
+.app-component {
+    display: none;
+    flex-flow: row wrap;
+    justify-content: center;
+    flex: 1 1 calc(100% / 3);
+    height: 100vh;
+    @include collapse-border;
+    overflow: hidden;
+    > * {
+        width: 100%;
+    }
+    &.act {
+        display: flex;
+    }
+}
+select {
+    width: 100%;
+    height: 40px;
+    padding-left: 4px;
+    margin-bottom: 0;
+    font-family: -apple-system,'Noto Sans TC',sans-serif;
+    font-weight: 400;
+    color: ghostwhite;
+    background: $ipt-bg;
+    border: none;
+    @include collapse-border;
+}
+.hide-switch {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+.timer-blk,
+.project-list-wrapper {
+    color: ghostwhite;
+    font-size: 20px;
+    line-height: 1.5;
+}
+.timer-blk,
+.current-setting-blk {
+    padding: 16px;
+    width: 50%;
+    height: 192px;
+    @include collapse-border;
+}
+.rest-hint {
+    display: none;
+}
+.is-rest {
+    .rest-hint {
+        display: block;
+    }
+    .countdown-blk {
+        display: none;
+    }
+}
+.record-list-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 16px;
+    height: calc(100vh - 192px);
+    .react-datepicker__input-container {
+        width: 100% !important;
+        margin-bottom: 16px;
+    }
+}
+.record-list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    max-height: 100%;
+    border: 1px skyblue solid;
+    background: $ipt-bg;
+    @extend %custom-scroll;
+    .item {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        &:not(:last-child) {
+            background: none;
+            border-bottom: 1px skyblue solid;
+        }
+        > * {
+            flex: 1 1 25%;
+            box-shadow: none;
+            &:nth-child(1){
+                flex: 1 1 50%;
+            }
+            &:not(:last-child) {
+                border-right: 1px skyblue solid;
+            }
+        }
+        .text-ipt {
+            background: none;
+            box-shadow: none;
+        }
+    }
+    .time-blk {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        flex: 0 0 120px;
+        height: 40px;
+        padding: 0 16px;
+        font-size: 16px;
+        color: ghostwhite;
+    }
+    .btn-delete {
+    }
+    
+}
+.project-list-wrapper {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 16px;
+    width: 100%;
+    .text-ipt {
+        margin-bottom: 16px;
+    }
+}
+
+.project-list {
+    align-self: stretch;
+    width: 100%;
+    max-height: calc(100% - 56px);
+    background: $ipt-bg;
+    @extend %custom-scroll;
+    @include collapse-border;
+    .item {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        height: 40px;
+        padding: 0 8px;
+        color: ghostwhite;
+        &:not(:last-child) {
+            border-bottom: 1px skyblue solid;
+        }
+    }
+    .btn-delete {
+        height: 24px;
+        flex: 0 0 24px;
+        padding: 0;
+    }
+    .hours {
+        flex: 0 0 45px;
+        font-size: 13px;
+        padding: 0 8px;
+        text-align: right;
+    }
+    .name {
+        flex: 1 1 auto;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+.text-ipt {
+    width: 100%;
+    height: 40px;
+    width: 100%;
+    padding: 0 8px;
+    font-size: 16px;
+    line-height: 40px;
+    font-family: -apple-system,'Noto Sans TC',sans-serif;
+    font-weight: 300;
+    color: ghostwhite;
+    background: $ipt-bg;
+    border: none;
+    @include collapse-border;
+}
+div.text-ipt{
+    @include ellipsis;
+}
+.note-area {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+}
+
+.btn-delete {
+    border: none;
+    background: none;
+    font-size: 0;
+    width: 24px;
+    height: 24px;
+    position: relative;
+    cursor: pointer;
+    &:before {
+        content: '\f014';
+        font-family: FontAwesome;
+        font-size: 16px;
+        color: ghostwhite;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+.btn-nav-item {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    font-size: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    &:before {
+        font-family: FontAwesome;
+        font-size: 26px;
+        color: #666;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-align: center;
+    }
+    &.time:before {
+        content: '\f017';
+        font-size: 30px;
+    }
+    &.project:before {
+        content: '\f1e2';
+    }
+    &.action:before {
+        content: '\f134';
+    }
+    &.report:before {
+        content: '\f0f6';
+    }
+    &.act {
+        background: skyblue;
+        &:before {
+            color: ghostwhite;
+        }
+    }
+    &:hover {
+        background: rgba(skyblue,.8);
+        color: #ccc;
+    }
+}
+%custom-scroll {
+    overflow: hidden;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+    &::-webkit-scrollbar-track {
+        background: lightgray  ;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: skyblue;
+    }
+}
+.report-panel {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 16px;
+    .react-datepicker__input-container {
+        width: calc(50% - 8px);
+    }
+}
+.report-result-blk {
+    align-self: stretch;
+    width: 100%;
+    height: calc(100% - 40px);
+    padding: 32px 16px;
+    color: #fff;
+    @extend %custom-scroll;
+}
+.order-list {
+    list-style: decimal;
+    margin-left: 40px;
+    margin-top: 12px;
+    margin-bottom: 24px;
+    .item {
+        margin-bottom: 12px;
+        padding-left: 12px;
+    }
+}
+.report-hours-list{
+    padding-left: 40px;
+    margin-top: 12px;
+    margin-bottom: 24px;
+    .item{
+        display: flex;
+        flex-flow:row nowrap;
+        align-items:center;
+        counter-increment: items;
+        margin-bottom: 12px;
+        padding-left: 12px;
+        &:before{
+            display: block;        
+            content: counter(items)".";
+            flex: 0 0 32px;
+        }
+    }
+    .hours{
+        display: flex;
+        flex-flow:row nowrap;
+        justify-content:flex-end;
+        align-items:center;
+        margin-left: 24px;
+        flex:1 1 auto;
+        &:before{
+            display: flex;
+            flex-flow:row nowrap;
+            align-self:stretch;
+            content: "";
+            margin-right: 24px;
+            border-bottom: 1px dotted #fff;
+            flex: 1 1 auto;
+        }
+    }
+}
+.drop-selector-wrapper {
+    position: relative;
+    min-width: 0;
+}
+.drop-selector {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3000;
+    background: #fff;
+    width: 350px;
+    box-shadow: 0 0 20px 1px #000;
+    //transform:translateX(-50%);
+    visibility: hidden;
+    &.show{
+        visibility: visible;
+    }
+    &.left{
+        left:0;
+    }
+    &.top{
+        top:0;
+    }
+    &:before,
+    &:after {
+        content: '';
+        display: block;
+        width: 16px;
+        height: 16px;
+        background: #fff;
+        position: absolute;
+    }
+    &:before {
+        top: -8px;
+        left: 16px;
+        transform: rotate(45deg);
+        box-shadow: 0 0 20px 1px #000;
+    }
+    &:after {
+        top: 0;
+        left: 0;
+        height: 24px;
+        width: 50px;
+    }
+    &.arrow-left-bottom{
+        &:before{
+            top:auto;
+            bottom:-8px;
+        }
+        &:after {
+            top:auto;
+            bottom:0;
+        }
+    }
+    &.arrow-right-top{
+        &:before{
+            left:auto;
+            right: 16px;
+        }
+        &:after {
+            left:auto;
+            right:4px;
+        }
+    }
+    &.arrow-right-bottom{
+        &:before{
+            left:auto;
+            right: 16px;
+            top:auto;
+            bottom: -8px;
+        }
+        &:after {
+            left:auto;
+            right:4px;
+            top: auto;
+            bottom: 0;
+        }
+    }
+    .scroll-blk {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        padding: 12px;
+        max-height: 250px;
+        @extend %custom-scroll;
+    }
+    .btn-project {
+        flex: 0 0 32%;
+        width: 32%;
+        margin-bottom: 8px;
+        position: relative;
+        z-index: 200;
+    }
+    .btn-action {
+        flex: 0 0 32%;
+        width: 32%;
+        margin-bottom: 8px;
+        position: relative;
+        z-index: 200;
+    }
+    .btn-note{
+        flex: 0 0 100%;
+        z-index: 200;
+        &:not(:last-child){
+            margin-bottom: 8px;
+        }
+    }
+}
+.btn-project,
+.btn-action,
+.btn-note {
+    height: 60px;
+    background: none;
+    border: 1px skyblue solid;
+    font-size: 20px;
+    font-family: -apple-system,'Noto Sans TC',sans-serif;
+    font-weight: 300;
+    cursor: pointer;
+    @include ellipsis;
+    .year{
+        display: block;
+        font-size: 14px;
+    }
+    &:hover{
+        color: #fff;
+        background:skyblue;
+    }
+}
+.btn-action{
+    min-height: 40px;
+    height: auto;
+}
+.btn-note{
+    min-height: 40px;
+    height: auto;
+    text-align: left;
+}
+@media print {
+    .app-wrapper > *{
+        display: none;
+    }
+    .app-content{
+        display: block;
+        & > *{
+            display: none;
+        }
+        .app-component:last-child{
+            display: block;
+            color:#000;
+        }
+    }
+}

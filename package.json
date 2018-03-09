@@ -189,9 +189,12 @@
   "dependencies": {
     "devtron": "^1.4.0",
     "electron-debug": "^1.5.0",
+    "firebase": "^4.11.0",
     "font-awesome": "^4.7.0",
     "history": "^4.7.2",
+    "moment": "^2.21.0",
     "react": "^16.2.0",
+    "react-datepicker": "^1.2.2",
     "react-dom": "^16.2.0",
     "react-hot-loader": "^4.0.0-beta.13",
     "react-redux": "^5.0.6",

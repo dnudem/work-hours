@@ -1,0 +1,23 @@
+{
+	"folders":
+	[
+		{
+			"path": ".",
+			"name": "settings",
+			"folder_exclude_patterns":[
+				"*"
+			],
+			"file_include_patterns":[
+				"*.sublime-project",
+				"package.json"
+			],
+
+		},
+		{
+			"path": "./app",
+			"file_exclude_patterns":[
+				"*.eslintrc"
+			]
+		}
+	]
+}

@@ -1,0 +1,15 @@
+@mixin collapse-border($width: 1px,$color:skyblue) {
+	box-shadow: $width 0 0 0 $color,
+	0 $width 0 0 $color,
+	$width $width 0 0 $color,
+	$width 0 0 0 $color inset,
+	0 $width 0 0 $color inset;
+}
+@mixin ellipsis() {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+@mixin rb() {
+	border: 1px red solid;
+}
