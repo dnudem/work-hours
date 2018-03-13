@@ -51,3 +51,4 @@ main.js.map
 .idea
 npm-debug.log.*
 app/constants/config.js
+work-hours.sublime-workspace
