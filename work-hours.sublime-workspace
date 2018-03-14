@@ -8,19 +8,10 @@
 	"buffers":
 	[
 		{
-			"file": "/Users/intestine/Desktop/liu3.cin",
+			"file": "app/components/ActionLabel.js",
 			"settings":
 			{
-				"buffer_size": 172277,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/intestine/Desktop/liu7.cin",
-			"settings":
-			{
-				"buffer_size": 203593,
+				"buffer_size": 1003,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -40,6 +31,14 @@
 			[
 				"install",
 				"Package Control: Install Package"
+			],
+			[
+				"keyb",
+				"Preferences: Key Bindings"
+			],
+			[
+				"keybi",
+				"Preferences: Key Bindings"
 			],
 			[
 				"dup",
@@ -66,7 +65,7 @@
 				"Install Package Control"
 			]
 		],
-		"width": 410.0
+		"width": 426.0
 	},
 	"console":
 	{
@@ -88,10 +87,13 @@
 	[
 		"/Users/intestine/Desktop/work-hours",
 		"/Users/intestine/Desktop/work-hours/app",
-		"/Users/intestine/Desktop/work-hours/app/actions"
+		"/Users/intestine/Desktop/work-hours/app/actions",
+		"/Users/intestine/Desktop/work-hours/app/components"
 	],
 	"file_history":
 	[
+		"/Users/intestine/.hyper.js",
+		"/Users/intestine/Desktop/liu3.cin",
 		"/Users/intestine/Desktop/liu7.cin",
 		"/Users/intestine/Desktop/work-hours/app/app.html",
 		"/Users/intestine/Desktop/work-hours/webpack.config.main.prod.js",
@@ -152,6 +154,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"action-label",
+			"...",
+			"÷",
 			"  ",
 			"    ",
 			"     ",
@@ -183,60 +188,34 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/Users/intestine/Desktop/liu3.cin",
+					"file": "app/components/ActionLabel.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 172277,
+						"buffer_size": 1003,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								123639,
-								123645
+								636,
+								636
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 395029.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/Users/intestine/Desktop/liu7.cin",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 203593,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								203593,
-								203593
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 473253.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -284,7 +263,7 @@
 	"project": "work-hours.sublime-project",
 	"replace":
 	{
-		"height": 66.0
+		"height": 42.0
 	},
 	"save_all_on_build": true,
 	"select_file":
