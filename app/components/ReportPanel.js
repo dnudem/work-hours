@@ -21,7 +21,7 @@ class ReportPanel extends React.Component {
 		this.setState({
 		    beginDate: date
 		},() => {
-			if(this.state.endDate===""){
+			if(this.state.endDate===null){
 				this.changeEndDate(date.clone().add(4, 'day'))
 			}else{
 				this.queryRecord()
@@ -37,7 +37,7 @@ class ReportPanel extends React.Component {
 		this.setState({
 		    endDate: date
 		},() => {
-			if(this.state.beginDate!=="" && this.state.endDate!==""){
+			if(this.state.beginDate!==null && this.state.endDate!==null){
 				this.queryRecord()
 			}
 		})
@@ -110,19 +110,23 @@ class ReportPanel extends React.Component {
     render() {
         return (
             <div className="report-panel">
-		    	<DatePicker 
-		    		className="text-ipt"
-		            dateFormat="YYYY-MM-DD"
-		            todayButton={"today"}
-		            selected={this.state.beginDate} 
-		            onChange={this.changeBeginDate} />
-			    <DatePicker 
-			    	className="text-ipt" 
-				    dateFormat="YYYY-MM-DD"
-		            todayButton={"today"}
-		            minDate={this.state.beginDate}
-			        selected={this.state.endDate} 
-			        onChange={this.changeEndDate} />
+            	<div className="date-wrap">
+			    	<DatePicker 
+			    		className="text-ipt"
+			            dateFormat="YYYY-MM-DD"
+			            todayButton={"today"}
+			            selected={this.state.beginDate} 
+			            onChange={this.changeBeginDate} />
+		        </div>
+		        <div className="date-wrap">
+				    <DatePicker 
+				    	className="text-ipt" 
+					    dateFormat="YYYY-MM-DD"
+			            todayButton={"today"}
+			            minDate={this.state.beginDate}
+				        selected={this.state.endDate} 
+				        onChange={this.changeEndDate} />
+				</div>
 		        <div className="report-result-blk" dangerouslySetInnerHTML={{__html: this.process(this.props.records)}} />
 				<button onClick={this.reportPrint}>pdf</button>
 			</div>

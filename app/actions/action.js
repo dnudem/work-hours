@@ -1,6 +1,6 @@
 // @flow
 
-import { INIT_NOTE_SELECTOR_TARGET,INIT_ACTION_SELECTOR_TARGET,INIT_PROJECT_SELECTOR_TARGET,INIT_PROJECTS, INIT_ACTIONS, INIT_CURRENT_PROJECT, INIT_CURRENT_ACTION, INIT_CURRENT_NOTE, INIT_NOTES, INIT_RECORDS, INIT_QUERY_RECORDS } from '../constants/actionTypes'
+import { INIT_CURRENT_QUERY_DATE, INIT_NOTE_SELECTOR_TARGET,INIT_ACTION_SELECTOR_TARGET,INIT_PROJECT_SELECTOR_TARGET,INIT_PROJECTS, INIT_ACTIONS, INIT_CURRENT_PROJECT, INIT_CURRENT_ACTION, INIT_CURRENT_NOTE, INIT_NOTES, INIT_RECORDS, INIT_QUERY_RECORDS, INIT_MISS_RECORDS} from '../constants/actionTypes'
 import * as firebase from 'firebase'
 import { FIREBASE_CONFIG } from '../constants/config'
 
@@ -166,7 +166,7 @@ export const changeRecordProject = (recordIdx: string, projectIdx: string) => (f
         projectIdx: projectIdx
     });
 })
-export const addRecord = () => (function(dispatch) {
+export const addRecord = (timeStamp) => (function(dispatch) {
     let promises = [];
     promises.push(database.ref('currentProjectIdx').once('value'))
     promises.push(database.ref('currentActionIdx').once('value'))
@@ -176,7 +176,7 @@ export const addRecord = () => (function(dispatch) {
             projectIdx: value[0].val(),
             actionIdx: value[1].val(),
             currentNote: value[2].val(),
-            time: new Date().getTime()
+            time: timeStamp?timeStamp:new Date().getTime()
         })
     })
 })
@@ -258,4 +258,32 @@ export const onInitNoteSelectorTarget = (element: ?Object,callBack: ?Function,pr
 
 export const changeNoteSelectorTarget = (element: ?Object,callBack: ?Function,projectIdx: ?string) => (function(dispatch) {
     dispatch(onInitNoteSelectorTarget(element,callBack,projectIdx))
+})
+
+//miss record
+export const onInitMissRecords = (records: Array < Object >) => ({
+    type: INIT_MISS_RECORDS,
+    records
+})
+export const fetchMissRecords = (timeStamp) => (function(dispatch) {
+    database.ref('records').orderByChild("time").startAt(timeStamp).endAt(timeStamp + 86400000).on('value', snapshot => {
+        let arr = []
+        let obj
+        snapshot.forEach((item) => {
+            obj = {}
+            obj = item.val()
+            obj.idx = item.key
+            arr.push(obj)
+        })
+        dispatch(onInitMissRecords(arr.reverse()))
+    })
+})
+
+//current query date
+export const onInitCurrentQueryDate = (date: Object) => ({
+    type: INIT_CURRENT_QUERY_DATE,
+    date
+})
+export const changeCurrentQueryDate = (date: Object) => (function(dispatch) {
+    dispatch(onInitCurrentQueryDate(date))
 })

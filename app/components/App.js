@@ -16,7 +16,7 @@ import ProjectLabel from './ProjectLabel'
 import ActionLabel from './ActionLabel'
 import Moment from 'moment'
 import DatePicker from 'react-datepicker'
-import { changeNoteSelectorTarget,changeActionSelectorTarget,changeProjectSelectorTarget,fecthProjectData, fecthActionData, fecthCurrentProject, fecthCurrentAction, fecthCurrentNote, fecthNotes, fetchRecords, changeCurrentProject,changeCurrentAction, changeCurrentNote } from '../actions/action'
+import { changeCurrentQueryDate,changeNoteSelectorTarget,changeActionSelectorTarget,changeProjectSelectorTarget,fecthProjectData, fecthActionData, fecthCurrentProject, fecthCurrentAction, fecthCurrentNote, fecthNotes, fetchRecords, changeCurrentProject,changeCurrentAction, changeCurrentNote } from '../actions/action'
 
 class App extends React.Component {
     constructor(props) {
@@ -38,6 +38,7 @@ class App extends React.Component {
         this.props.fecthCurrentAction()
         this.props.fecthCurrentNote()
         this.props.fecthNotes()
+        this.props.changeCurrentQueryDate(today)
         this.props.fetchRecords(today.valueOf())
     }
     changeRecordDate = (date) => {
@@ -48,6 +49,7 @@ class App extends React.Component {
         this.setState({
             recordDate: date
         })
+        this.props.changeCurrentQueryDate(date)
         this.props.fetchRecords(date.valueOf())
     }
     changeComponentMode = (e) => {
@@ -57,7 +59,6 @@ class App extends React.Component {
         })
     }
     changeCurrentProject = (idx) =>{
-        console.log(idx)
         this.props.changeCurrentProject(idx)
         this.props.changeCurrentNote("")
     }
@@ -91,8 +92,8 @@ class App extends React.Component {
                             <NoteArea projectIdx={this.props.currentProject} note={this.props.currentNote} onChange={this.changeCurrentNote} onSelect={this.changeCurrentNote}/>
                         </div>
                         <div className="record-list-wrapper">
-                            <DatePicker className="text-ipt" dateFormat="YYYY-MM-DD" todayButton={"today"} selected={this.state.recordDate} onChange={this.changeRecordDate} />
-                            <RecordList/>
+                            <DatePicker className="text-ipt" dateFormat="YYYY-MM-DD" todayButton={"today"} selected={this.props.currentQueryDate} onChange={this.changeRecordDate} />
+                            <RecordList date={this.state.recordDate}/>
                         </div>
                     </div>
                     <div className={"app-component" + (this.state.mode === "project" ? " act" : "")}>
@@ -107,7 +108,7 @@ class App extends React.Component {
                 </div>
                 <ProjectSelector target={this.props.projectSelectorTarget}/>
                 <ActionSelector target={this.props.actionSelectorTarget}/>
-                <NoteSelector  target={this.props.noteSelectorTarget}/>\
+                <NoteSelector  target={this.props.noteSelectorTarget}/>
             </div>
         )
     }
@@ -127,7 +128,8 @@ bindActionCreators({
     changeCurrentNote,
     changeProjectSelectorTarget,
     changeActionSelectorTarget,
-    changeNoteSelectorTarget
+    changeNoteSelectorTarget,
+    changeCurrentQueryDate
 }, dispatch))
 const mapStateToProps = store => ({
     projects:store.projects,
@@ -136,6 +138,7 @@ const mapStateToProps = store => ({
     currentNote:store.currentNote,
     projectSelectorTarget:store.projectSelectorTarget,
     actionSelectorTarget:store.actionSelectorTarget,
-    noteSelectorTarget:store.noteSelectorTarget
+    noteSelectorTarget:store.noteSelectorTarget,
+    currentQueryDate: store.currentQueryDate
 })
 export default connect(mapStateToProps, mapDispatchToProps)(App)

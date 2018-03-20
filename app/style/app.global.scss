@@ -19,7 +19,7 @@ body {
     display: flex;
     flex-flow: row wrap;
     position: relative;
-    font-family: -apple-system,'Noto Sans TC',sans-serif;
+    font-family: 'Noto Sans TC',-apple-system,sans-serif;
     font-size: 18px;
     font-weight: 300;
     @include collapse-border;
@@ -53,7 +53,7 @@ select {
     height: 40px;
     padding-left: 4px;
     margin-bottom: 0;
-    font-family: -apple-system,'Noto Sans TC',sans-serif;
+    font-family: 'Noto Sans TC',-apple-system,sans-serif;
     font-weight: 400;
     color: ghostwhite;
     background: $ipt-bg;
@@ -208,7 +208,7 @@ select {
     padding: 0 8px;
     font-size: 16px;
     line-height: 40px;
-    font-family: -apple-system,'Noto Sans TC',sans-serif;
+    font-family: 'Noto Sans TC',-apple-system,sans-serif;
     font-weight: 300;
     color: ghostwhite;
     background: $ipt-bg;
@@ -315,8 +315,11 @@ div.text-ipt{
     flex-flow: row wrap;
     justify-content: space-between;
     padding: 16px;
-    .react-datepicker__input-container {
+    .date-wrap {
         width: calc(50% - 8px);
+        .react-datepicker__input-container{
+            display: block;
+        }
     }
 }
 .report-result-blk {
@@ -487,7 +490,7 @@ div.text-ipt{
     background: none;
     border: 1px skyblue solid;
     font-size: 20px;
-    font-family: -apple-system,'Noto Sans TC',sans-serif;
+    font-family: 'Noto Sans TC',-apple-system,sans-serif;
     font-weight: 300;
     cursor: pointer;
     @include ellipsis;
@@ -508,6 +511,35 @@ div.text-ipt{
     min-height: 40px;
     height: auto;
     text-align: left;
+}
+.miss-hint{
+    margin-bottom: 16px;
+    color: Crimson ;
+}
+.record-add-panel{
+    width: 100%;
+    z-index: 100;
+    .react-datepicker__input-container{
+        width: 100%;
+    }
+    .react-datepicker-popper{
+        z-index: 100;
+    }
+}
+.miss-record-time-list{
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    padding: 8px 0;
+    .btn-action{
+        flex: 0 0 23.5%;
+        margin-right: 2%;
+        &:nth-child(4n){
+            margin-right: 0;
+        }
+    }
 }
 @media print {
     .app-wrapper > *{

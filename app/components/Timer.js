@@ -2,7 +2,7 @@ import React from 'react'
 import { addRecord, doNotify } from '../actions/action'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-
+import RecordAddPanel from './RecordAddPanel'
 
 class Timer extends React.Component {
     constructor(props) {
@@ -79,7 +79,8 @@ class Timer extends React.Component {
                     <span>{this.pad(this.state.countdown.minutes)} : </span>
                     <span>{this.pad(this.state.countdown.seconds)}</span>
                 </div>
-                <button onClick={this.props.addRecord} >Add</button>
+                <RecordAddPanel/>
+                
                 <button onClick={this.props.doNotify} >notify</button>
                 { /*<button onClick={this.props.doNotify} >Notify</button>*/ }
             </div>

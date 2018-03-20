@@ -1,8 +1,17 @@
 // @flow
 
 import { combineReducers } from 'redux'
-import { INIT_NOTE_SELECTOR_TARGET,INIT_ACTION_SELECTOR_TARGET,INIT_PROJECT_SELECTOR_TARGET,INIT_PROJECTS, INIT_ACTIONS, INIT_CURRENT_PROJECT,INIT_CURRENT_ACTION, INIT_CURRENT_NOTE, INIT_NOTES, INIT_RECORDS, INIT_QUERY_RECORDS } from '../constants/actionTypes'
+import { INIT_CURRENT_QUERY_DATE,INIT_NOTE_SELECTOR_TARGET,INIT_ACTION_SELECTOR_TARGET,INIT_PROJECT_SELECTOR_TARGET,INIT_PROJECTS, INIT_ACTIONS, INIT_CURRENT_PROJECT,INIT_CURRENT_ACTION, INIT_CURRENT_NOTE, INIT_NOTES, INIT_RECORDS, INIT_QUERY_RECORDS, INIT_MISS_RECORDS} from '../constants/actionTypes'
 
+function currentQueryDate(state = null, action) {
+    switch (action.type) {
+    case INIT_CURRENT_QUERY_DATE: {
+        return action.date
+    }
+    default:
+        return state
+    }
+}
 function projects(state = {}, action) {
     switch (action.type) {
     case INIT_PROJECTS: {
@@ -66,6 +75,15 @@ function records(state = [], action) {
         return state
     }
 }
+function missRecords(state = [], action) {
+    switch (action.type) {
+    case INIT_MISS_RECORDS: {
+        return action.records
+    }
+    default:
+        return state
+    }
+}
 function queryRecords(state = [], action) {
     switch (action.type) {
     case INIT_QUERY_RECORDS: {
@@ -110,10 +128,12 @@ const workHoursData = combineReducers({
     currentNote,
     notes,
     records,
+    missRecords,
     queryRecords,
     projectSelectorTarget,
     actionSelectorTarget,
-    noteSelectorTarget
+    noteSelectorTarget,
+    currentQueryDate
 })
 
 export default workHoursData
