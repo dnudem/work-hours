@@ -97,6 +97,9 @@ select {
     flex-flow: column nowrap;
     padding: 16px;
     height: calc(100vh - 192px);
+    &.no-padding{
+        padding: 0;
+    }
     .react-datepicker__input-container {
         width: 100% !important;
         margin-bottom: 16px;

@@ -5,7 +5,7 @@ import App from '../components/App'
 // @Store
 //const store = createStore(workHoursData, applyMiddleware(thunk))
 type RootType = {
-store: {}
+	store: {}
 };
 
 export default function Root({store}:RootType) {

@@ -54,7 +54,7 @@ class RecordList extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className="record-list-wrapper no-padding">
                 {this.checkPastOrNot(this.props.date)?this.checkMissRecore(this.props.records):null}
                 <ul className="record-list">
                     {this.process(this.props.records)}
